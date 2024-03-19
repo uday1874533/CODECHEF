@@ -1,55 +1,51 @@
-#include<bits/stdc++.h>
-#include <vector>
+#include <bits/stdc++.h>
 using namespace std;
 
-// ELGAR LAST SERIES ANTRA
-
-
-
-
-
-
-
-
-
-
-// KL RAHUL CLASSY KNOCK 
-
-// 101
-// KOHLI 
-// HITMAN
-
-int countt(const vector<int> &arra) {
-    int nn = arra.size();
-    int cnt = 0;
-    int cuuu = arra[0];
-    for (int i = 1; i < nn; i++) {
-        if (arra[i] < cuuu) {
-            cnt++;
-        } else {
-            cuuu = arra[i]; // Fix the assignment here
-        }
-    }
-    return cnt;
-}
-
 int main() {
-    // Input the number of test cases
-    int T;
-    cin >> T;
-
-    while (T--) {
-        // Input the number of friends
-        int N;
-        cin >> N;
-        vector<int> arr(N);
-        for (int i = 0; i < N; i++) {
-            cin >> arr[i];
+	// your code goes here
+    int tt;
+    cin>>tt;
+    while(tt--)
+    {
+       int n;
+       cin>>n;
+       vector<int>arr(n);
+       for(int i=0;i<n;i++)
+       cin>>arr[i];
+       vector<int>nge(n);
+      vector<int>ans(n);
+    stack<int>dot;
+    for(int i=0;i<n;i++)
+    {
+        while(!dot.empty() && arr[i]>arr[dot.top()])
+        {
+            ans[dot.top()]=i;
+            dot.pop();
         }
-        int res = countt(arr);
-        cout << res << endl;
+        dot.push(i);        
     }
-
-    return 0;
+    if(!dot.empty())
+    {
+        while(!dot.empty())
+        {
+            ans[dot.top()]=n;
+            dot.pop();
+        }
+    }
+    int prev=-1;
+    for(int i=0;i<n;i++)
+    {
+        if(ans[i]<=prev)
+        ans[i]=0;
+        else
+        prev=ans[i];
+    }
+    int tot=0;
+    for(int i=0;i<n;i++)
+    {
+        if(ans[i])
+        tot+=ans[i]-i-1;
+    }
+    cout<<tot<<'\n';
+    }
 }
-
