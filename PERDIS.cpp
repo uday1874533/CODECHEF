@@ -12,7 +12,7 @@ int main() {
         int arr[n];
         for (int i = 0; i < n; i++) {
             cin >> arr[i];
-            arr[i]--; // decrementing the input by 1
+            arr[i]--; // decrementing the input by 1                
         }
 
         int start = 0;
