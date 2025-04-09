@@ -1,51 +1,58 @@
-#include <bits/stdc++.h>
+#include <iostream>
 using namespace std;
 
-int main() {
-	// your code goes here
-    int tt;
-    cin>>tt;
-    while(tt--)
-    {
-       int n;
-       cin>>n;
-       vector<int>arr(n);
-       for(int i=0;i<n;i++)
-       cin>>arr[i];
-       vector<int>nge(n);
-      vector<int>ans(n);
-    stack<int>dot;
-    for(int i=0;i<n;i++)
-    {
-        while(!dot.empty() && arr[i]>arr[dot.top()])
-        {
-            ans[dot.top()]=i;
-            dot.pop();
-        }
-        dot.push(i);        
-    }
-    if(!dot.empty())
-    {
-        while(!dot.empty())
-        {
-            ans[dot.top()]=n;
-            dot.pop();
-        }
-    }
-    int prev=-1;
-    for(int i=0;i<n;i++)
-    {
-        if(ans[i]<=prev)
-        ans[i]=0;
-        else
-        prev=ans[i];
-    }
-    int tot=0;
-    for(int i=0;i<n;i++)
-    {
-        if(ans[i])
-        tot+=ans[i]-i-1;
-    }
-    cout<<tot<<'\n';
-    }
+int main()
+{
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    int n;
+	    cin>>n;
+	    string s[n];
+	    
+	    int no_A=0;
+	    int no_B=0;
+	    int no_O=0;
+	    int no_AB=0;
+	    
+	    
+	    for(int i=0;i<n;i++)
+	    {
+	        cin>>s[i];
+	        
+	        if(s[i]=="A")
+	        {
+	            no_A++;
+	        }
+	        else if(s[i]=="B")
+	        {
+	            no_B++;
+	        }
+	        else if(s[i]=="O")
+	        {
+	            no_O++;
+	        }
+	        else  if(s[i]=="AB")
+	        {
+	            no_AB++;
+	        }
+	   }
+	   
+	   int chain =no_O;
+	   if(no_A>no_B)
+	   {
+	       chain=chain+no_A+no_AB;
+	   }
+	   else
+	   {
+	       chain+=no_B+no_AB;
+	   }
+	   
+	   cout<<chain<<endl;
+	}
+	   
+	   
+	    
+	    
 }
